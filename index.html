@@ -96,12 +96,11 @@ const CONFIG={
 };
 /* ===== ROSTER : modifie ici, ou utilise le mode admin (voir plus bas) ===== */
 const DEFAULT_ROSTER=[
-{id:'1',name:'Fondateur',section:'Management',roles:['Owner','Fondateur'],avatar:'',links:[]},
-{id:'2',name:'Manager',section:'Management',roles:['Manager'],avatar:'',links:[]},
-{id:'3',name:'Joueur 1',section:'Joueurs',roles:['Competitive Player'],avatar:'',links:[]},
-{id:'4',name:'Joueur 2',section:'Joueurs',roles:['Freestyler'],avatar:'',links:[]},
-{id:'5',name:'Créatif 1',section:'Créatifs',roles:['Video Artist'],avatar:'',links:[]},
-{id:'6',name:'Streamer 1',section:'Content Creators',roles:['Streamer'],avatar:'',links:[]}];
+{id:'1',name:'Seven',section:'Lead',roles:['Leader','Founder'],avatar:'4a7a59bf-c430-4639-90a8-43d9a85c184e',links:[]},
+{id:'2',name:'cookie',section:'Social Management',roles:['Manager'],avatar:'adbd66ca-1403-4124-b5b7-c3493f901e32',links:[]},
+{id:'3',name:'Rush',section:'Joueurs',roles:['Freestyler'],avatar:'blob:https://chatgpt.com/0b3b86a0-5285-45df-8ab8-7dbec1c89844',links:[]},
+{id:'4',name:'K',section:'Joueurs',roles:['Freestyler'],avatar:'blob:https://chatgpt.com/7cd6575c-5663-410c-bea3-2f0220546c39',links:[]},
+{id:'5',name:'Seven 1',section:'Creative',roles:['Video Artist'],avatar:'4a7a59bf-c430-4639-90a8-43d9a85c184e',links:[]},;
 let members=DEFAULT_ROSTER,cur=null,editing=false;
 const isAdmin=()=>location.hash==='#admin';
 try{const d=JSON.parse(localStorage.getItem('sage_draft')||'null');if(d&&isAdmin())members=d}catch(e){}
