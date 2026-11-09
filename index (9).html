@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>Sage Clan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#050505;--card:#111312;--line:#232624;--tx:#eef2ee;--mut:#8b948c;--ac:#a3b88f;--ac2:#5f7a52;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 16px/1.5 'Bai Jamjuree',system-ui,sans-serif}
+a{color:inherit;text-decoration:none}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:24px;padding:12px 5vw;background:rgba(5,5,5,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav img{height:38px}nav .l{display:flex;gap:22px;margin-left:24px;flex:1}
+nav .l a{color:var(--mut);transition:.2s;padding:4px 0;border-bottom:2px solid transparent}
+nav .l a.on,nav .l a:hover{color:var(--tx);border-color:var(--ac)}
+.btn{display:inline-block;padding:10px 22px;border-radius:999px;background:var(--ac);color:#0b0f0a;font-weight:700;border:0;cursor:pointer;font-family:inherit;font-size:15px}
+.btn.g{background:transparent;color:var(--tx);border:1px solid var(--line)}.btn.g:hover{border-color:var(--ac)}
+section.pg{display:none;animation:f .4s}section.pg.on,section.pg:target{display:block}body:has(.pg:target) .pg.on:not(:target){display:none}@keyframes f{from{opacity:0;transform:translateY(8px)}}
+.hero{min-height:78vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 5vw;background:radial-gradient(ellipse at 50% 40%,#1b2418 0,transparent 60%)}
+.hero img{width:min(240px,50vw);margin-bottom:12px}.hero small{letter-spacing:.4em;color:var(--ac);text-transform:uppercase}
+h1{font-size:clamp(40px,8vw,88px);margin:8px 0 24px;line-height:1;font-weight:700}h2{font-size:clamp(24px,4vw,38px);margin:0 0 8px}
+.wrap{max-width:1200px;margin:0 auto;padding:48px 5vw}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{border:1px solid var(--line);border-radius:20px;padding:44px 32px;background:linear-gradient(160deg,#141a12,#0a0a0a)}
+.panel p{color:var(--mut)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}.stats b{display:block;font-size:34px;color:var(--ac)}.stats span{color:var(--mut)}
+.soc{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.m{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;position:relative;transition:.2s}.m:hover{border-color:var(--ac);transform:translateY(-3px)}
+.av{aspect-ratio:1;border-radius:12px;background:#0a0a0a center/cover;display:grid;place-items:center;font-size:42px;color:var(--ac2);font-weight:700;margin-bottom:10px}
+.m h4{margin:0;font-size:18px}.tags{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}.tags i{font-style:normal;font-size:12px;padding:2px 9px;border-radius:99px;background:#1b2418;color:var(--ac)}
+.lk{display:flex;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--mut)}.lk a:hover{color:var(--ac)}
+.ed{position:absolute;top:8px;right:8px;display:none;gap:4px}.edit .ed{display:flex}.ed button{border:0;border-radius:8px;background:#000c;color:#fff;cursor:pointer;padding:4px 8px}
+.sec{margin:34px 0 14px;color:var(--ac);letter-spacing:.2em;text-transform:uppercase;font-size:14px}
+.bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+form,.modal div.in{display:grid;gap:12px}label{display:grid;gap:4px;color:var(--mut);font-size:14px}
+input,select,textarea{background:#0b0d0b;border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:11px 13px;font:inherit}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--ac2)}
+.modal{position:fixed;inset:0;background:#000c;display:none;place-items:center;z-index:20;padding:16px}.modal.on{display:grid}
+.modal .in{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;width:min(520px,100%);max-height:90vh;overflow:auto}
+.sw{display:flex;gap:12px;flex-wrap:wrap}.sw div{width:110px;height:80px;border-radius:12px;padding:8px;font-size:12px;display:flex;align-items:flex-end;border:1px solid var(--line)}
+.app{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:var(--card)}.app small{color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:30px 5vw;color:var(--mut);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+#msg{color:var(--ac)}
+@media(max-width:720px){.two,.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}nav .l{gap:12px;margin-left:6px;flex-wrap:wrap}nav img{height:30px}nav .btn{padding:8px 14px}}
+</style></head><body>
+<nav><a href="#home"><img src="logo.png" alt="Sage Clan"></a>
+<div class="l"><a href="#home" data-p="home">Accueil</a><a href="#roster" data-p="roster">Roster</a><a href="#creative" data-p="creative">Creative</a><a href="#editor" data-p="editor">Modifier le roster</a></div>
+<a class="btn" href="#apply">Apply</a></nav>
+
+<section class="pg on" id="home"><div class="hero"><img src="logo.png" alt=""><small>Sage Clan</small><h1>Sagesse. Passion.</h1>
+<div class="bar"><a class="btn" href="#roster">Voir le roster</a><a class="btn g" href="#apply">Rejoindre le clan</a></div></div>
+<div class="wrap"><div class="two"><div class="panel"><h2>Fais connaissance avec nos membres</h2><p>Découvre ceux qui font vivre le clan.</p><a class="btn" href="#roster">Roster</a></div>
+<div class="panel"><h2>Envie de faire partie du clan ?</h2><p>Les candidatures sont ouvertes.</p><a class="btn" href="#apply">Postuler</a></div></div>
+<h2 style="margin-top:50px">Nous ne sommes pas seuls !</h2><p style="color:var(--mut)">Notre communauté.</p>
+<div class="stats"><div><b>—</b><span>YouTube</span></div><div><b>—</b><span>Twitter / X</span></div><div><b>—</b><span>Twitch</span></div><div><b>—</b><span>Discord</span></div></div>
+<div class="soc" id="soc"></div></div></section>
+
+<section class="pg" id="roster"><div class="wrap"><div class="bar" style="justify-content:space-between"><div><h1 style="font-size:clamp(34px,6vw,60px)">Sage Roster</h1><p style="color:var(--mut);max-width:640px">La sagesse est notre fondation, la passion notre moteur. Voici les membres qui portent le clan.</p></div>
+</div>
+<div id="rs"></div></div></section>
+
+<section class="pg" id="creative"><div class="wrap"><h1 style="font-size:clamp(34px,6vw,60px)">Sage Creative</h1>
+<p style="color:var(--mut);max-width:680px">Vidéos, graphismes et animations pour faire rayonner le clan, avec un Brand Kit pour une identité cohérente.</p>
+<h2 class="sec">Brand Kit</h2><div class="panel" style="display:grid;gap:22px"><div><small style="color:var(--mut)">Logo</small><br><img src="logo.png" style="height:130px;margin-top:8px"></div>
+<div><small style="color:var(--mut)">Typographie</small><div style="font-size:26px;font-weight:700">Bai Jamjuree Bold</div><div style="font-size:22px">Bai Jamjuree Medium</div><div style="font-size:20px;font-weight:300">Bai Jamjuree Light</div></div>
+<div><small style="color:var(--mut)">Couleurs</small><div class="sw" style="margin-top:8px"><div style="background:#050505">#050505</div><div style="background:#a3b88f;color:#050505">#A3B88F</div><div style="background:#5f7a52">#5F7A52</div><div style="background:#eef2ee;color:#050505">#EEF2EE</div></div></div></div></div></section>
+
+<section class="pg" id="apply"><div class="wrap" style="max-width:720px"><h1 style="font-size:clamp(34px,6vw,60px)">Rejoindre Sage Clan</h1>
+<p style="color:var(--mut)">Remplis le formulaire, on revient vers toi sur Discord.</p><div id="alt"></div>
+<form id="af"><label>Pseudo<input name="pseudo" required maxlength="60"></label><label>Discord<input name="discord" required maxlength="60"></label>
+<label>Rôle visé<select name="role"><option>Joueur compétitif</option><option>Freestyler</option><option>Content Creator</option><option>Éditeur vidéo</option><option>Graphiste</option><option>Autre</option></select></label>
+<label>Liens (YouTube, TikTok, clips…)<input name="links" maxlength="300"></label><label>Présente-toi<textarea name="msg" rows="5" required maxlength="1500"></textarea></label>
+<button class="btn" type="submit">Envoyer ma candidature</button><div id="msg"></div></form>
+</div></section>
+
+<section class="pg" id="editor"><div class="wrap"><h1 style="font-size:clamp(34px,6vw,60px)">Modifier le roster</h1>
+<form id="ef" style="max-width:520px"><label>Clé staff<input type="password" id="ek" autocomplete="off" required></label><button class="btn" type="submit">Déverrouiller</button><div id="emsg" style="color:var(--ac)"></div></form>
+<div id="eb" hidden><div class="bar"><button class="btn" id="add">+ Ajouter un membre</button><button class="btn g" id="elock">Verrouiller</button><span id="esv" style="color:var(--ac)"></span></div><div id="er"></div></div></div></section>
+<section class="pg" id="staff"><div class="wrap" style="max-width:720px"><h1 style="font-size:clamp(34px,6vw,60px)">Espace Staff</h1>
+<form id="sf"><label>Clé secrète<input type="password" id="sk" autocomplete="off" required></label><button class="btn" type="submit">Déverrouiller</button><div id="smsg" style="color:var(--ac)"></div></form>
+<div id="sl"></div></div></section>
+<footer><span>© 2026 Sage Clan. Tous droits réservés.</span><a href="#staff" style="opacity:.3">Staff</a></footer>
+
+<div class="modal" id="md"><div class="in"><h2 id="mt">Membre</h2>
+<label>Nom<input id="fn"></label><label>Section<input id="fs" list="secl"></label><datalist id="secl"></datalist>
+<label>Rôles (séparés par une virgule)<input id="fr"></label><label>Photo (URL)<input id="fa" placeholder="https://…"></label>
+<label>Liens (un par ligne : Nom|https://…)<textarea id="fl" rows="4"></textarea></label>
+<div class="bar"><button class="btn" id="sv">Enregistrer</button><button class="btn g" id="cx">Annuler</button></div></div></div>
+
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ok=u=>/^https?:\/\//i.test(u);
+/* ===== CONFIGURATION ===== */
+const CONFIG={
+  supabaseUrl:'https://afvhpqwrqtzpsepipgja.supabase.co',
+  supabaseKey:'sb_publishable_z_EBPPsQNEqsiawsqzP6CQ_zH0eqyim',
+  formEndpoint:'',
+  email:'',
+  socials:{YouTube:'https://www.youtube.com/@sageclanrl',"Twitter / X":'',Discord:'https://discord.gg/F5qfy55BP7',Twitch:'',TikTok:'https://www.tiktok.com/@7sevenrl07',Instagram:''}
+};
+/* Roster affiché tant que la base n'en contient pas */
+const DEFAULT_ROSTER=[
+{id:'1',name:'Fondateur',section:'Management',roles:['Owner','Fondateur'],avatar:'',links:[]},
+{id:'2',name:'Manager',section:'Management',roles:['Manager'],avatar:'',links:[]},
+{id:'3',name:'Joueur 1',section:'Joueurs',roles:['Competitive Player'],avatar:'',links:[]},
+{id:'4',name:'Joueur 2',section:'Joueurs',roles:['Freestyler'],avatar:'',links:[]},
+{id:'5',name:'Créatif 1',section:'Créatifs',roles:['Video Artist'],avatar:'',links:[]},
+{id:'6',name:'Streamer 1',section:'Content Creators',roles:['Streamer'],avatar:'',links:[]}];
+let members=DEFAULT_ROSTER,cur=null,SK='';
+const sb=(p,o={})=>fetch(CONFIG.supabaseUrl+'/rest/v1/'+p,{...o,headers:{apikey:CONFIG.supabaseKey,Authorization:'Bearer '+CONFIG.supabaseKey,'Content-Type':'application/json',...(o.headers||{})}});
+$('#soc').innerHTML=Object.entries(CONFIG.socials).filter(([k,u])=>ok(u)).map(([k,u])=>`<a class="btn g" href="${esc(u)}" target="_blank" rel="noopener">${esc(k)}</a>`).join('');
+function html(ed){const secs=[...new Set(members.map(m=>m.section))];
+return secs.map(s=>`<div class="sec">${esc(s)}</div><div class="grid ${ed?'edit':''}">`+members.filter(m=>m.section===s).map(m=>`<div class="m"><div class="ed"><button data-e="${esc(m.id)}">✎</button><button data-d="${esc(m.id)}">✕</button></div>
+<div class="av" ${ok(m.avatar)?`style="background-image:url('${esc(m.avatar)}')"`:''}>${ok(m.avatar)?'':esc(m.name[0]||'?')}</div><h4>${esc(m.name)}</h4>
+<div class="tags">${m.roles.map(r=>`<i>${esc(r)}</i>`).join('')}</div><div class="lk">${m.links.filter(l=>ok(l.u)).map(l=>`<a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(l.l)}</a>`).join('')}</div></div>`).join('')+'</div>').join('')}
+function render(){$('#rs').innerHTML=html(false);$('#er').innerHTML=html(true);$('#secl').innerHTML=[...new Set(members.map(m=>m.section))].map(s=>`<option value="${esc(s)}">`).join('')}
+async function loadRoster(){if(!CONFIG.supabaseUrl)return;try{const r=await sb('roster?id=eq.1&select=data');if(!r.ok)return;const d=await r.json();if(d[0]&&Array.isArray(d[0].data)&&d[0].data.length){members=d[0].data;render()}}catch(e){}}
+async function save(){const s=$('#esv');s.textContent='Enregistrement…';render();
+try{const r=await sb('rpc/staff_save_roster',{method:'POST',body:JSON.stringify({k:SK,d:members})});s.textContent=r.ok?'✓ Roster enregistré':'Erreur : clé refusée ou base non prête'}catch(e){s.textContent='Erreur réseau'}}
+$('#ef').onsubmit=async e=>{e.preventDefault();const m=$('#emsg'),k=$('#ek').value;$('#ek').value='';
+if(!CONFIG.supabaseUrl){m.textContent='Base non configurée.';return}
+try{const r=await sb('rpc/staff_check',{method:'POST',body:JSON.stringify({k})});const j=r.ok&&await r.json();if(j===true){SK=k;$('#ef').hidden=true;$('#eb').hidden=false;m.textContent='';render()}else m.textContent='Clé invalide (ou roster-setup.sql pas encore lancé).'}catch(x){m.textContent='Erreur réseau.'}};
+$('#elock').onclick=()=>{SK='';$('#eb').hidden=true;$('#ef').hidden=false;$('#esv').textContent=''};
+$('#er').addEventListener('click',e=>{const t=e.target;
+if(t.dataset.d&&confirm('Supprimer ce membre ?')){members=members.filter(m=>m.id!==t.dataset.d);save()}
+if(t.dataset.e)open_(members.find(m=>m.id===t.dataset.e))});
+function open_(m){cur=m;$('#mt').textContent=m?'Modifier le membre':'Nouveau membre';$('#fn').value=m?.name||'';$('#fs').value=m?.section||'Joueurs';$('#fr').value=(m?.roles||[]).join(', ');$('#fa').value=m?.avatar||'';$('#fl').value=(m?.links||[]).map(l=>l.l+'|'+l.u).join('\n');$('#md').classList.add('on')}
+$('#add').onclick=()=>open_(null);$('#cx').onclick=()=>$('#md').classList.remove('on');
+$('#sv').onclick=()=>{const m={id:cur?cur.id:String(Date.now()),name:$('#fn').value.trim()||'Sans nom',section:$('#fs').value.trim()||'Joueurs',roles:$('#fr').value.split(',').map(x=>x.trim()).filter(Boolean),avatar:$('#fa').value.trim(),
+links:$('#fl').value.split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const [l,...u]=x.includes('|')?x.split('|'):['Lien',x];return{l:l.trim(),u:u.join('|').trim()}})};
+members=cur?members.map(x=>x.id===cur.id?m:x):[...members,m];$('#md').classList.remove('on');save()};
+function route(){const p=(location.hash||'#home').slice(1);const id=['home','roster','creative','apply','staff','editor'].includes(p)?p:'home';
+document.querySelectorAll('.pg').forEach(s=>s.classList.toggle('on',s.id===id));document.querySelectorAll('nav .l a').forEach(a=>a.classList.toggle('on',a.dataset.p===id));scrollTo(0,0)}
+addEventListener('hashchange',route);route();render();loadRoster();
+$('#af').onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),m=$('#msg');
+if(CONFIG.supabaseUrl){try{const r=await sb('applications',{method:'POST',headers:{Prefer:'return=minimal'},body:JSON.stringify(f)});if(!r.ok)throw 0;e.target.reset();m.textContent='✓ Candidature envoyée !'}catch(x){m.textContent="Erreur d'envoi, réessaie plus tard."}}
+else if(CONFIG.formEndpoint){try{const r=await fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(f)});if(!r.ok)throw 0;e.target.reset();m.textContent='✓ Candidature envoyée !'}catch(x){m.textContent="Erreur d'envoi, réessaie plus tard."}}
+else if(CONFIG.email){location.href='mailto:'+CONFIG.email+'?subject='+encodeURIComponent('Candidature Sage Clan - '+f.pseudo)+'&body='+encodeURIComponent(Object.entries(f).map(([k,v])=>k+' : '+v).join('\n'));m.textContent="Ton application mail va s'ouvrir."}
+else m.textContent='Les candidatures ne sont pas encore configurées : contacte-nous sur Discord.'};
+async function loadStaff(){const m=$('#smsg');
+try{const r=await sb('rpc/staff_list',{method:'POST',body:JSON.stringify({k:SK})});if(!r.ok){m.textContent='Clé invalide.';$('#sl').innerHTML='';SK='';return}
+const d=await r.json();m.textContent=d.length+' candidature(s)';
+$('#sl').innerHTML=d.map(a=>`<div class="app"><b>${esc(a.pseudo)}</b> · ${esc(a.role)} <small>${esc((a.created_at||'').slice(0,10))}</small><br><small>Discord : ${esc(a.discord)}${a.links?' · '+esc(a.links):''}</small><p>${esc(a.msg)}</p><button class="btn g" data-x="${a.id}">Supprimer</button></div>`).join('')}catch(e){m.textContent='Erreur réseau.'}}
+$('#sf').onsubmit=e=>{e.preventDefault();SK=$('#sk').value;$('#sk').value='';loadStaff()};
+$('#sl').onclick=async e=>{const x=e.target.dataset.x;if(x&&confirm('Supprimer cette candidature ?')){await sb('rpc/staff_delete',{method:'POST',body:JSON.stringify({k:SK,i:Number(x)})});loadStaff()}};
+</script></body></html>
